@@ -42,7 +42,7 @@ class BirdWatcher {
         int sum = 0;
         for (int i : birdsPerDay) {
             if (i >= 5) {
-                sum += 1;
+                sum ++;
             }
         }
         return sum;

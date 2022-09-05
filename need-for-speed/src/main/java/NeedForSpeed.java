@@ -8,7 +8,7 @@ class NeedForSpeed {
     }
 
     public boolean batteryDrained() {
-        return battery == 0;
+        return battery < batteryDrain;
     }
 
     public int driven;

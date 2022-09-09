@@ -1,6 +1,6 @@
 class ProductionRemoteControlCar implements RemoteControlCar, Comparable<ProductionRemoteControlCar> {
     private int distanceTravelled;
-    private int victories;
+    private int numberofVictories;
 
     public void drive() {
         distanceTravelled += 10;
@@ -11,11 +11,11 @@ class ProductionRemoteControlCar implements RemoteControlCar, Comparable<Product
     }
 
     public int getNumberOfVictories() {
-        return victories;
+        return numberofVictories;
     }
 
     public void setNumberOfVictories(int numberofVictories) {
-        victories = numberofVictories;
+        this.numberofVictories = numberofVictories;
     }
 
     @Override

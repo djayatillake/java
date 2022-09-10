@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 public class Hamming {
     private String leftStrand;
     private String rightStrand;
@@ -10,19 +12,13 @@ public class Hamming {
         } else if (this.rightStrand.isBlank() && !this.leftStrand.isBlank()) {
             throw new IllegalArgumentException("right strand must not be empty.");
         } else if (this.leftStrand.length() != this.rightStrand.length()) {
-            throw new IllegalArgumentException("leftStrand and rightStrand must be of equal length.");    
+            throw new IllegalArgumentException("leftStrand and rightStrand must be of equal length.");
         }
     }
 
-    private int distance;
     public int getHammingDistance() {
-        char[] l = leftStrand.toCharArray();
-        char[] r = rightStrand.toCharArray();
-        for (int i = 0; i < l.length; i++) {
-            if (l[i]!=r[i]) {
-                distance++;
-            }
-        }
-        return distance;
+        return (int) IntStream.range(0, leftStrand.length())
+            .filter(i -> leftStrand.charAt(i) != rightStrand.charAt(i))
+            .count();
     }
 }

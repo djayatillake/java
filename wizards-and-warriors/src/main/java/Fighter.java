@@ -4,16 +4,15 @@ abstract class Fighter {
         return false;
     }
 
+    public String toString() {
+        return "Fighter is a " + this.getClass().getSimpleName();
+    }
+
     abstract int damagePoints(Fighter fighter);
 
 }
 
 class Warrior extends Fighter {
-
-    @Override
-    public String toString() {
-        return "Fighter is a Warrior";
-    }
 
     @Override
     int damagePoints(Fighter wizard) {
@@ -23,11 +22,6 @@ class Warrior extends Fighter {
 
 class Wizard extends Fighter {
     private boolean spell = false;
-
-    @Override
-    public String toString() {
-        return "Fighter is a Wizard";
-    }
 
     @Override
     boolean isVulnerable() {

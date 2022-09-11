@@ -1,16 +1,26 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.management.ServiceNotFoundException;
+
 public class Gigasecond {
+    public LocalDate momentDate;
+
+    public LocalDateTime momentDateTime; 
+
     public Gigasecond(LocalDate moment) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        this.momentDate = moment;
     }
 
     public Gigasecond(LocalDateTime moment) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        this.momentDateTime = moment;
     }
 
     public LocalDateTime getDateTime() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        if (this.momentDateTime != null) {
+            return this.momentDateTime.plusSeconds(1000000000);
+        } else {
+            return this.momentDate.atStartOfDay().plusSeconds(1000000000);
+        }
     }
 }

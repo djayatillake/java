@@ -7,85 +7,85 @@ public class ScrabbleScoreTest {
 
     @Test
     public void testALowerCaseLetter() {
-        Scrabble scrabble = new Scrabble("a", false, false, "", "");
+        Scrabble scrabble = new Scrabble("a");
         assertEquals(1, scrabble.getScore());
     }
 
     @Test
     public void testALowerCaseLetterTripleWord() {
-        Scrabble scrabble = new Scrabble("a", true, false, "", "");
+        Scrabble scrabble = new Scrabble("a", true, false, new boolean[1], new boolean[1]);
         assertEquals(3, scrabble.getScore());
     }
 
     @Test
     public void testALowerCaseLetterDoubleWord() {
-        Scrabble scrabble = new Scrabble("a", false, true, "", "");
+        Scrabble scrabble = new Scrabble("a", false, true, new boolean[1], new boolean[1]);
         assertEquals(2, scrabble.getScore());
     }
 
     @Test
     public void testAUpperCaseLetter() {
-        Scrabble scrabble = new Scrabble("A", false, false, "", "");
+        Scrabble scrabble = new Scrabble("A");
         assertEquals(1, scrabble.getScore());
     }
 
     @Test
     public void testAValuableLetter() {
-        Scrabble scrabble = new Scrabble("f", false, false, "", "");
+        Scrabble scrabble = new Scrabble("f");
         assertEquals(4, scrabble.getScore());
     }
 
     @Test
     public void testAShortWord() {
-        Scrabble scrabble = new Scrabble("at", false, false, "", "");
+        Scrabble scrabble = new Scrabble("at");
         assertEquals(2, scrabble.getScore());
     }
 
     @Test
     public void testAShortValuableWord() {
-        Scrabble scrabble = new Scrabble("zoo", false, false, "", "");
+        Scrabble scrabble = new Scrabble("zoo");
         assertEquals(12, scrabble.getScore());
     }
 
     @Test
     public void testAShortValuableWordTripleZDoubleWord() {
-        Scrabble scrabble = new Scrabble("zoo", false, true, "Z", "");
+        Scrabble scrabble = new Scrabble("zoo", false, true, new boolean[]{true, false, false}, new boolean[3]);
         assertEquals(64, scrabble.getScore());
     }
 
     @Test
     public void testAMediumWord() {
-        Scrabble scrabble = new Scrabble("street", false, false, "", "");
+        Scrabble scrabble = new Scrabble("street");
         assertEquals(6, scrabble.getScore());
     }
 
     @Test
     public void testAMediumValuableWord() {
-        Scrabble scrabble = new Scrabble("quirky", false, false, "", "");
+        Scrabble scrabble = new Scrabble("quirky");
         assertEquals(22, scrabble.getScore());
     }
 
     @Test
     public void testALongMixCaseWord() {
-        Scrabble scrabble = new Scrabble("OxyphenButazone", false, false, "", "");
+        Scrabble scrabble = new Scrabble("OxyphenButazone");
         assertEquals(41, scrabble.getScore());
     }
 
     @Test
     public void testAEnglishLikeWord() {
-        Scrabble scrabble = new Scrabble("pinata", false, false, "", "");
+        Scrabble scrabble = new Scrabble("pinata");
         assertEquals(8, scrabble.getScore());
     }
 
     @Test
     public void testAnEmptyInput() {
-        Scrabble scrabble = new Scrabble("", false, false, "", "");
+        Scrabble scrabble = new Scrabble("");
         assertEquals(0, scrabble.getScore());
     }
 
     @Test
     public void testEntireAlphabetAvailable() {
-        Scrabble scrabble = new Scrabble("abcdefghijklmnopqrstuvwxyz", false, false, "", "");
+        Scrabble scrabble = new Scrabble("abcdefghijklmnopqrstuvwxyz");
         assertEquals(87, scrabble.getScore());
     }
 

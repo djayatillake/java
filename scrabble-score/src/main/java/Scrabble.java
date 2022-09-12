@@ -5,20 +5,20 @@ class Scrabble {
     private char[] wordArray;
     private boolean doubleWord;
     private boolean tripleWord;
-    private String doubleLetter;
-    private char[] doubleArray;
-    private String tripleLetter;
-    private char[] tripleArray;
+    private boolean[] doubleArray;
+    private boolean[] tripleArray;
 
-    Scrabble(String word, boolean tripleWord, boolean doubleWord, String tripleLetter, String doubleLetter) {
+    Scrabble(String word) {
+        this(word, false, false, new boolean[word.length()], new boolean[word.length()]);
+    }
+    
+    Scrabble(String word, boolean tripleWord, boolean doubleWord, boolean[] tripleArray, boolean[] doubleArray) {
         this.word = word;
         this.wordArray = word.toUpperCase().toCharArray();
         this.doubleWord = doubleWord;
         this.tripleWord = tripleWord;
-        this.doubleLetter = doubleLetter;
-        this.tripleLetter = tripleLetter;
-        this.doubleArray = doubleLetter.toUpperCase().toCharArray();
-        this.tripleArray = tripleLetter.toUpperCase().toCharArray();
+        this.doubleArray = doubleArray;
+        this.tripleArray = tripleArray;
     }
 
     private int letterScore(char letter) {
@@ -42,14 +42,14 @@ class Scrabble {
         }
     }
 
-    private int wordScore(char[] chars) {
+    private int lettersScore(char[] chars) {
         return chars == null ? 0 : (int) IntStream.range(0, chars.length)
-                .map(i -> letterScore(chars[i]))
+                .map(i -> letterScore(chars[i]) * (doubleArray[i] ? 2 : 1) * (tripleArray[i] ? 3 : 1))
                 .sum();
     }
 
     int getScore() {
-        return (wordScore(wordArray) + wordScore(doubleArray) + wordScore(tripleArray) * 2) * (tripleWord ? 3 : 1) * (doubleWord ? 2 : 1);
+        return lettersScore(wordArray) * (tripleWord ? 3 : 1) * (doubleWord ? 2 : 1);
     }
 
 }

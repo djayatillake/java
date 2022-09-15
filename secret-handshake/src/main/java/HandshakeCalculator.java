@@ -6,23 +6,12 @@ import java.util.List;
 class HandshakeCalculator {
 
     List<Signal> calculateHandshake(int number) {
-        int trim = number % 32;
-        boolean reverse = trim / 16 == 1;
-        trim %= 16;
-        Signal[] signals = new Signal[] {Signal.JUMP, Signal.CLOSE_YOUR_EYES, Signal.DOUBLE_BLINK, Signal.WINK};
-        int denom = 8;
+        Signal[] signals = new Signal[] {Signal.WINK, Signal.DOUBLE_BLINK, Signal.CLOSE_YOUR_EYES, Signal.JUMP};
         List<Signal> signalList = new ArrayList<>();
-        for (int i = 0; i < signals.length; i++) {
-            if (trim / denom == 1) {
-                signalList.add(signals[i]);
-            }
-            trim %= denom;
-            denom /= 2;
+        for (int i = 0; i < 4; i++) {
+            if ((number & 1 << i) == 1 << i) signalList.add(signals[i]);
         }
-        if (reverse) {
-            return signalList;
-        } 
-        Collections.reverse(signalList);
+        if ((number & 1 << 4) == 1 << 4) Collections.reverse(signalList);
         return signalList;
     }
 

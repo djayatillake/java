@@ -2,15 +2,10 @@ import java.util.Arrays;
 
 class Matrix {
     private int[][] rows;
+
     Matrix(String matrixAsString) {
-        rows = new int[matrixAsString.split("\\n").length][matrixAsString.split("\\n")[0].split(" ").length];
-        String[] rawrows = matrixAsString.split("\\n");
-        for (int i = 0; i < rawrows.length; i++) {
-            String[] rawrow = rawrows[i].split(" ");
-            for (int j = 0; j < rawrow.length; j++) {
-                this.rows[i][j] = Integer.parseInt(rawrow[j]);
-            }
-        }
+        this.rows = Arrays.stream(matrixAsString.split("\\n"))
+                .map(row -> Arrays.stream(row.split(" ")).mapToInt(Integer::parseInt).toArray()).toArray(int[][]::new);
     }
 
     int[] getRow(int rowNumber) {
@@ -18,10 +13,6 @@ class Matrix {
     }
 
     int[] getColumn(int columnNumber) {
-        int[] column = new int[rows.length];
-        for (int i = 0; i < column.length; i++) {
-            column[i] = rows[i][columnNumber-1];
-        }
-        return column;
+        return Arrays.stream(rows).mapToInt(row -> row[columnNumber - 1]).toArray();
     }
 }

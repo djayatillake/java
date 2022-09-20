@@ -5,16 +5,21 @@ class RotationalCipher {
         this.shiftKey = shiftKey;
     }
 
+    char RotateChar(char shiftchar, int shiftkey) {
+        if (Character.isAlphabetic(shiftchar)) {
+            if (Character.isUpperCase(shiftchar)) {
+                return (char)((int)'A' + ((int)shiftchar - (int)'A' + shiftKey) % 26);
+            } else {
+                return (char)((int)'a' + ((int)shiftchar - (int)'a' + shiftKey) % 26);
+            }    
+        }
+        return shiftchar;
+    }
+
     String rotate(String data) {
         char[] carray = data.toCharArray();
         for (int i = 0; i < carray.length; i++) {
-            if (Character.isAlphabetic(carray[i])) {
-                if (Character.isUpperCase(carray[i])) {
-                    carray[i] = (char)((int)'A' + ((int)carray[i] - (int)'A' + shiftKey) % 26);
-                } else {
-                    carray[i] = (char)((int)'a' + ((int)carray[i] - (int)'a' + shiftKey) % 26);
-                }    
-            }
+            carray[i] = RotateChar(carray[i], this.shiftKey);
         }
         return String.valueOf(carray);
     }

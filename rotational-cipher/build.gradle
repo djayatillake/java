@@ -19,6 +19,6 @@ test {
   testLogging {
     exceptionFormat = 'full'
     showStandardStreams = true
-    events = ["passed", "failed", "skipped"]
+    events = ["passed", "failed", "skipped","standardOut"]
   }
 }
